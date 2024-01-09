@@ -19,17 +19,17 @@ router.post('/chores', choreController.createChore, (req, res) => {
   res.status(200).json(res.locals.newChore);
 });
 
-// create a rout for getting all group info
+// create a route for getting all group info
 router.get("/groups", groupController.getGroups, (req, res) => {
   res.status(200).json(res.locals.groups);
 });
 
-// create a rout for getting all users info
+// create a route for getting all users info
 router.get("/users", usersController.getUsers, (req, res) => {
   res.status(200).json(res.locals.payload);
 });
 
-// create a rout for posting new user info
+// create a route for posting new user info
 router.post("/users", usersController.postNewUser, (req, res) => {
   console.log("sending back: ", res.locals.payload);
   res.status(200).json(res.locals.payload);
