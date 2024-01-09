@@ -31,7 +31,6 @@ export default function CreateChore() {
             // are we actually grabbing the input value
             onChange={(e) => setChore(e.target.value)}
           />
-          {console.log(e.target.value)}
         </label>
         <label>
           Owner:
