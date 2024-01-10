@@ -14,7 +14,7 @@ usersController.getUsers = (req, res, next) => {
   });
 };
 
-usersController.postNewUser = (req, res, next) => {
+usersController.postNewUser = (req, res, next) => { 
   console.log("req.body ", req.body);
   const { username, email, profile_picture } = req.body;
   const queryString = {
