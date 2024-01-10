@@ -19,13 +19,14 @@ const provider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
   const response = await signInWithPopup(auth, provider);
 
-  const { uid } = response.user;
+  const { uid, displayName } = response.user;
 
-  const userID = {
+  const user = {
     user_id: uid,
+    name: displayName,
   };
 
-  return userID;
+  return user;
 };
 
 // Previous code, I know not best practice
