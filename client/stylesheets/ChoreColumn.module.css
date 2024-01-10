@@ -1,0 +1,4 @@
+.choresColumn {
+  display: flex;
+  flex-direction: column;
+}
