@@ -3,6 +3,19 @@ const queries = require('../models/queries');
 
 const groupController = {};
 
+groupController.createNewGroup = (req, res, next) => {
+  console.log(req.body);
+  const arr = [req.body.groupName];
+  db.query(queries.createNewGroup, arr)
+    .then((data) => {
+      if (data.rows) {
+        res.locals.newGroup = data;
+        return next();
+      }
+      return next({ err: 'Problem creating new group in database' });
+    });
+};
+
 groupController.getGroups = (req, res, next) => {
 
 };
