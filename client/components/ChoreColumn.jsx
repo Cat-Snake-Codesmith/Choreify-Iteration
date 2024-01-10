@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import ChoreCard from "./ChoreCard.jsx";
 import styles from "../stylesheets/ChoreColumn.module.css";
 
-export default function ChoreColumn(props) {
+export default function ChoreColumn({ columnStatus }) {
   // const chores = useSelector(selectAllChoresFromStatus("NOT DONE"));
   const chores = [
     {
@@ -38,10 +38,10 @@ export default function ChoreColumn(props) {
     choreCards.push(new ChoreCard(chores[i]));
   }
   // console.log(`should display `, choreCards);
-  console.log("props ", props);
+
   return (
     <div className={styles.choresColumn}>
-      {/* <h1>!{columnStatus}</h1> */}
+      <h1>{columnStatus}</h1>
       {choreCards}
     </div>
   );

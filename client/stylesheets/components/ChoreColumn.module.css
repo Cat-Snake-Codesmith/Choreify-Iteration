@@ -1,5 +1,6 @@
 .choresColumn {
   display: flex;
   flex-direction: column;
-  max-width: 20rem;
+  max-width: 33%;
+  margin: 0.5rem;
 }
