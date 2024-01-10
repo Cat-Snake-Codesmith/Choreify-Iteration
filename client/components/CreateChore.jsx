@@ -8,6 +8,7 @@ export default function CreateChore() {
   const [date, setDate] = useState('');
   // const [data, error, isLoading] = useGetAllChoresQuery();
 
+  // what is the purpose of this helper function?
   const someHelperFunction = (e) => {
     e.preventDefault();
     try {
@@ -27,6 +28,7 @@ export default function CreateChore() {
             type="text"
             placeholder="Dishes, Laundry, etc..."
             value={initialChore}
+            // are we actually grabbing the input value
             onChange={(e) => setChore(e.target.value)}
           />
         </label>
