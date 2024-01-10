@@ -1,14 +1,25 @@
 import React from "react";
 import ChoreColumn from "../components/ChoreColumn.jsx";
+import styles from "../stylesheets/containers/ColumnsContainer.module.css";
+export default function ColumnsContainer() {
+  // const notStarted = "NOT STARTED";
+  // //   console.log("HEYYYY ", <ChoreColumn columnStatus={"IN PROGRESS"} />);
+  // const myColumns = [];
+  // const myStatus = ["NOT STARTED", "IN PROGRESS", "COMPLETE"];
 
-export default function KanbanContainer() {
-  const notStarted = "NOT STARTED";
-  console.log("HEYYYY ", <ChoreColumn columnStatus={"IN PROGRESS"} />);
+  // for (let i = 0; i < myStatus.length; i++) {
+  //   myColumns.push(<ChoreColumn columnStatus={myStatus[i]} />);
+  // }
+  // console.log("myColumns ", myColumns);
   return (
-    <>
-      <ChoreColumn columnStatus={notStarted} id={"1"} />
-      <ChoreColumn columnStatus={"IN PROGRESS"} id={"2"} />
-      <ChoreColumn columnStatus={"COMPLETE"} id={"3"} />
-    </>
+    <div className={styles.columnsContainer}>
+      <ChoreColumn columnStatus="NOT STARTED" />
+      <ChoreColumn columnStatus="IN PROGRESS" />
+      <ChoreColumn columnStatus="COMPLETE" />
+      {/* <ChoreColumn id="1" />
+      <ChoreColumn id="2" />
+      // <ChoreColumn id="3" /> */}
+      {/* {myColumns} */}
+    </div>
   );
 }
