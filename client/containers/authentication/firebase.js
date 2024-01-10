@@ -17,45 +17,27 @@ import { addLoggedUser } from "../../redux/slices/usersSlice";
 const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = async () => {
-  // signInWithPopup(auth, provider)
-  //   .then((result) => {
-  // const name = result.user.displayName;
-  // const email = result.user.email;
-  // const profilePic = result.user.photoURL;
+  const response = await signInWithPopup(auth, provider);
 
-  // localStorage.setItem("name", name);
-  // localStorage.setItem("email", email);
-  // localStorage.setItem("profilePic", profilePic);
-  //     console.log(`in signInWithGoole`, {
-  //       name: localStorage.name,
-  //       email: localStorage.email,
-  //       profilePic: localStorage.profilePic,
-  //     });
-  //     user.name = name;
-  //     console.log(`user now: `, user);
-  //     user.email = email;
-  //     console.log(`user now: `, user);
-  //     user.profilePic = profilePic;
-  //     console.log(`user now: `, user);
-  //     return user;
-  //   })8un
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
+  const { uid } = response.user;
 
-  let response = await signInWithPopup(auth, provider);
-  const name = response.user.displayName;
-  const email = response.user.email;
-  const profilePic = response.user.photoURL;
-
-  localStorage.setItem("name", name);
-  localStorage.setItem("email", email);
-  localStorage.setItem("profilePic", profilePic);
-
-  let user = {
-    username: response.user.displayName,
-    email: response.user.email,
-    profile_picture: response.user.photoURL,
+  const userID = {
+    user_id: uid,
   };
-  return user;
+
+  return userID;
 };
+
+// Previous code, I know not best practice
+
+//   const name = response.user.displayName;
+//   const email = response.user.email;
+//   const profilePic = response.user.photoURL;
+
+//  localStorage.setItem("name", name);
+// localStorage.setItem("email", email);
+// localStorage.setItem("profilePic", profilePic);
+
+// username: response.user.displayName,
+// email: response.user.email,
+// profile_picture: response.user.photoURL,

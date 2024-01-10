@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable quotes */
+/* eslint-disable camelcase */
 const db = require("../models/choreifyModels");
 const queries = require("../models/queries");
 
@@ -15,24 +18,22 @@ usersController.getUsers = (req, res, next) => {
 };
 
 usersController.postNewUser = (req, res, next) => {
-  console.log("req.body ", req.body);
-  const { username, email, profile_picture } = req.body;
-  const queryString = {
-    text: `INSERT INTO USERS (username, email, profile_picture)
-  VALUES ($1, $2, $3)
-  RETURNING *;
-  `,
-    values: [username, email, profile_picture],
-  };
-  db.query(queryString).then((data) => {
-    // console.log("data from query ", data);
-    if (data.rowCount >= 1) {
-      res.locals.payload = data.rows[0];
-      next();
-    } else {
-      next({ err: "Problem creating new user in database" });
-    }
-  });
+  console.log("req.body in controller", req.body);
+  const { user_id } = req.body;
+
+  const values = [user_id];
+  const queryString = `INSERT INTO users (id) VALUES ($1)`;
+
+  db.query(queryString, values)
+    .then((data) => {
+      console.log("data from query ", data);
+      if (data.rowCount >= 1) {
+        res.locals.payload = data.rows[0];
+        next();
+      } else {
+        next({ err: "Problem creating new user in database" });
+      }
+    });
 };
 
 module.exports = usersController;
