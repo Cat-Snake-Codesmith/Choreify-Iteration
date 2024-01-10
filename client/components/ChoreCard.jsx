@@ -15,7 +15,7 @@ export default function ChoreCard() {
 
   return (
     <div id="lane">
-      <h2>Chores Not Started</h2>
+      {/* <h2>Chores Not Started</h2> */}
       {data ? <p>Chore: {data[0].title}</p> : null}
       {data ? <p>Description: {data[0].description}</p> : null}
       {data ? <p>Created Date: {data[0].created_date}</p> : null}
