@@ -2,7 +2,7 @@
 import React from "react";
 import CreateChore from "../components/CreateChore.jsx";
 import ChoreCard from "../components/ChoreCard.jsx";
-import "../styles.css";
+// import "../styles.css";
 
 import { fetchChores } from "../redux/slices/choresSlice.js";
 import { useSelector } from "react-redux";
@@ -14,11 +14,8 @@ export default function MainContainer() {
 
   return (
     <div>
-      <h1>Choreify!</h1>
       <div id="swimLanes">
         <CreateChore />
-        <ChoreCard />
-        {/* {isLoading ? 'Loading...' : JSON.stringify(data)} */}
       </div>
     </div>
   );

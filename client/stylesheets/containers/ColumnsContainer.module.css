@@ -1,0 +1,6 @@
+.columnsContainer {
+  display: flex;
+  border: red 1px solid;
+  max-width: 55rem;
+  flex-wrap: nowrap;
+}

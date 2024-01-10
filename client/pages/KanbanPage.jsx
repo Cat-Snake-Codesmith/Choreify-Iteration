@@ -1,12 +1,14 @@
 import React from "react";
 import MainContainer from "../containers/MainContainer.jsx";
 
-import { fetchChores } from "../redux/slices/choresSlice.js";
+import styles from "../stylesheets/KanbanPage.module.css";
+import ColumnsContainer from "../containers/ColumnsContainer.jsx";
+
 export default function KanbanPage() {
   return (
-    <div>
-      <h1>Kanban Page</h1>
+    <div className={styles.KanbanPage}>
       <MainContainer />
+      <ColumnsContainer />
     </div>
   );
 }
