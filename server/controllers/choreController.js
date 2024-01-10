@@ -23,7 +23,9 @@ choreController.createChore = (req, res, next) => {
   // created_date] = req.body;
   // console.log(arr);
 
+  // hardcoded a chore because could not receive from client side
   const arr = ['feed the cat', 'feed the cat her favorite cat food', 1, 'assigned', 'end of the week', 1, (new Date()).toLocaleString('en-US')];
+
   // pass the params into the function that will insert them in the query
   // then insert them into the database using db.query
   db.query(queries.createChore, arr)
