@@ -28,6 +28,7 @@ app.use('/build', express.static(path.join(__dirname, '../client/build')));
 app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
 
 // will send any users request to our users router; need / in front of endpoint
+// will send any users request to our users router
 app.use('/api/users', usersRouter);
 
 // will send any groups request to our users groupsRouter
