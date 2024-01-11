@@ -10,7 +10,7 @@ export default function groupCreationForm() {
 
   const newGroupHandler = (e) => {
     e.preventDefault();
-    fetch('/api/createNewGroup', {
+    fetch('/api/groups', {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({ groupName, groupMembers }),

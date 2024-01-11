@@ -16,3 +16,5 @@ module.exports = {
     return pool.query(text, params, callback);
   },
 };
+// pool.query('SELECT * FROM groups').then((data) => console.log(data));
+

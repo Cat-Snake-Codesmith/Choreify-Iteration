@@ -24,17 +24,17 @@ app.use('*', (req, res, next) => {
 // serve everything from the build folder
 app.use('/build', express.static(path.join(__dirname, '../client/build')));
 
-// serve index.html to any get request on the path '/'
-app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
-
 // will send any users request to our users router
-app.use('api/users', usersRouter);
+app.use('/api/users', usersRouter);
 
 // will send any groups request to our users groupsRouter
-app.use('api/groups', groupsRouter);
+app.use('/api/groups', groupsRouter);
 
 // will send any chores request to our users choresRouter
-app.use('api/chores', choresRouter);
+app.use('/api/chores', choresRouter);
+
+// serve index.html to any get request on the path '/'
+app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
 
 // 404 error handler
 app.use('/*', (req, res) => {
@@ -55,5 +55,7 @@ app.use('/', (err, req, res, next) => {
 // Starts the server on port 3000
 app.listen(3000, (err) => {
   if (err) console.log('Error setting up server');
-  console.log('Choreify server running and ready to work :)');
+  console.log('Choreify server running and ready to work on port 3000:)');
 });
+
+module.exports = app;

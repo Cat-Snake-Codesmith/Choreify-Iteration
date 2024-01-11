@@ -4,10 +4,23 @@ const queries = require('../models/queries');
 const groupController = {};
 
 groupController.createNewGroup = (req, res, next) => {
-  console.log(req.body);
-  const arr = [req.body.groupName];
-  db.query(queries.createNewGroup, arr)
+  const { groupName, groupMembers } = req.body;
+
+  console.log(groupName);
+  console.log(groupMembers);
+
+  // console.log(req.body);
+  // const arr = [req.body.groupName];
+  // console.log('IM IN HERE');
+  // values needed are coming in req.body
+
+  const arr = [groupName, groupMembers];
+
+  db.query('INSERT INTO groups ( id, name ) VALUES ($1, $2)', arr)
     .then((data) => {
+      console.log(data);
+
+      // console.log(arr);
       if (data.rows) {
         res.locals.newGroup = data;
         return next();
