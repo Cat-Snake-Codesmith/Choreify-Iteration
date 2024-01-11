@@ -4,18 +4,22 @@ import { Routes, Route } from "react-router-dom";
 import { useGetAllChoresQuery } from "../redux/api/chores/choresApi.js";
 import "../styles.css";
 
-export default function ChoreCard(props) {
-  // const { data, isLoading, error } = useGetAllChoresQuery();
-  // console.log("data ", data);
-
-  // let cards = []
-  // for(let i= i<data.length; i++){
-  //   cards.push(<></>)
-  // }
-
+export default function ChoreCard({
+  id,
+  title,
+  description,
+  due_date,
+  assignees_id,
+  group_id,
+}) {
   return (
     <div id="lane">
-      <>{JSON.stringify(props)}</>
+      <p>Id: {id}</p>
+      <p>Title: {title}</p>
+      <p>Description: {description}</p>
+      <p>Due_date: {due_date}</p>
+      <p>assignees_id: {assignees_id}</p>
+      <p>group_id: {group_id}</p>
     </div>
   );
 }
