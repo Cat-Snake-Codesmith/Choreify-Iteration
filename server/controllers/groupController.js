@@ -3,6 +3,8 @@ const queries = require('../models/queries');
 
 const groupController = {};
 
+
+
 groupController.createNewGroup = (req, res, next) => {
   const { groupName, groupMembers } = req.body;
 
@@ -16,7 +18,7 @@ groupController.createNewGroup = (req, res, next) => {
 
   const arr = [groupName, groupMembers];
 
-  db.query('INSERT INTO groups ( id, name ) VALUES ($1, $2)', arr)
+  db.query('INSERT INTO groups ( name, members ) VALUES ($1, $2)', arr)
     .then((data) => {
       console.log(data);
 
