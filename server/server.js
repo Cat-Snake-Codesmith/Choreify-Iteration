@@ -27,6 +27,7 @@ app.use('/build', express.static(path.join(__dirname, '../client/build')));
 // serve index.html to any get request on the path '/'
 app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
 
+// will send any users request to our users router; need / in front of endpoint
 // will send any users request to our users router
 app.use('/api/users', usersRouter);
 
