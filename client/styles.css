@@ -49,6 +49,13 @@ input {
     /* border: 1px solid black; */
 }
 
+#homepage{
+    display: block;
+    background-color: blanchedalmond;
+    font-weight: 600;
+    font-family: Helvetica;
+}
+
 #newGroupPage {
     display: flex;
     background: linear-gradient(117deg, rgba(70, 129, 137, 0.10) 9.51%, rgba(7, 87, 98, 0.10) 95.18%), #FFF;
