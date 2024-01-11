@@ -29,6 +29,7 @@ app.use('/api/users', usersRouter);
 
 // will send any groups request to our users groupsRouter
 app.use('/api/groups', groupsRouter);
+app.use('/api/groups', groupsRouter);
 
 // will send any chores request to our users choresRouter
 app.use('/api/chores', choresRouter);
