@@ -28,7 +28,7 @@ usersController.postNewUser = (req, res, next) => {
 
   // query needed to add user to db
   const addUser = `
-  INSERT INTO users (id, name) VALUES ($1) RETURNING *;
+  INSERT INTO users (id, name) VALUES ($1, $2) RETURNING *;
   `;
 
   // query to add user
@@ -36,13 +36,35 @@ usersController.postNewUser = (req, res, next) => {
     .then((data) => {
       console.log("data from query ", data);
       if (data.rowCount >= 1) {
-        // want to change res.locals name to something more semantic like 'userID'
-        res.locals.payload = data.rows[0];
+        res.locals.user = data.rows[0];
         next();
       } else {
         next({ err: "Problem creating new user in database" });
       }
     }).catch((error) => {
+      return next(error);
+    });
+};
+
+usersController.addAssignee = (req, res, next) => {
+  console.log('in the addAssignee controller');
+  console.log(res.locals.user);
+
+  const { id } = res.locals.user;
+  const userValueArr = [id];
+  const addAssigneeQuery = `INSERT INTO assignees (user_id) VALUES ($1) RETURNING *`;
+
+  db.query(addAssigneeQuery, userValueArr)
+    .then((data) => {
+      console.log('data from query ', data);
+      if (data.rowCount >= 1) {
+        res.locals.user = data.rows[0];
+        next();
+      } else {
+        next({ err: 'Problem creating new assignee in database' });
+      }
+    })
+    .catch((error) => {
       return next(error);
     });
 };
