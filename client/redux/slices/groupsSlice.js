@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 /*
 Redux Toolkit automatically infers actions
@@ -7,55 +7,55 @@ Inside the slider we create the reducers (update the part of the state regarding
 */
 
 export const groupsSlice = createSlice({
-  name: 'groups',
+  name: "groups",
   initialState: {
     data: {}, // {id:{choreObj}, id: {choreObj}}
-    status: 'idle', // status: 'idle' | 'loading' | 'succeeded' | 'failed',
+    status: "idle", // status: 'idle' | 'loading' | 'succeeded' | 'failed',
     error: null,
   },
   reducers: {
     // Redux uses immer library which detects changes to a "draft state" and produces a brand new immutable state based off those changes
     add: (state, action) => {
-      console.log('REDUCER: invoker ADD');
+      console.log("REDUCER: invoker ADD");
       state.groups.data.action.payload.id = action.payload; // Expects all chore data structure to be passed
     },
     modify: (state, action) => {
-      console.log('REDUCER: invoker Modify');
+      console.log("REDUCER: invoker Modify");
       state.groups.data.action.payload.id = action.payload; // Expects all chore data structure to be passed
     },
     deleteOne: (state, action) => {
-      console.log('REDUCER: invoker DeleteOne');
+      console.log("REDUCER: invoker DeleteOne");
       delete state.groups.data.action.payload.id; // Expects chore id to be passed
     },
   },
   extraReducers(builder) {
     // Used for reducers that were not defined and auto-assigned action creators inside our slice - particular use cases
     builder
-      .addCase(fetchGroups.pending, (state, action) => {
-        console.log('####### fetchGroups.pending! ', {
+      .addCase(fetchAllGroups.pending, (state, action) => {
+        console.log("####### fetchAllGroups.pending! ", {
           state_data: state?.data,
           status: state?.status,
           action_type: action.type,
           payload: action.payload,
         });
-        state.status = 'loading';
+        state.status = "loading";
       })
-      .addCase(fetchGroups.fulfilled, (state, action) => {
-        console.log('####### fetchGroups.fulfilled! ', {
+      .addCase(fetchAllGroups.fulfilled, (state, action) => {
+        console.log("####### fetchAllGroups.fulfilled! ", {
           state_data: state?.data,
           status: state?.status,
           action_type: action.type,
           payload: action.payload,
         });
         state.data = action.payload; // Rewrites whole state with data from fetch
-        state.status = 'succeeded';
+        state.status = "succeeded";
       })
-      .addCase(fetchGroups.rejected, (state, action) => {
-        console.log('(`####### state.data ', state?.data);
-        console.log('(`####### state.status ', state?.status);
-        console.log('#### action ', action);
+      .addCase(fetchAllGroups.rejected, (state, action) => {
+        console.log("(`####### state.data ", state?.data);
+        console.log("(`####### state.status ", state?.status);
+        console.log("#### action ", action);
         state.error = action.error.message;
-        console.log('####### fetchGroups.rejected! ', {
+        console.log("####### fetchAllGroups.rejected! ", {
           state_data: state?.data,
           status: state?.status,
           action_type: action.type,
@@ -64,7 +64,7 @@ export const groupsSlice = createSlice({
           error_message: action.error.message,
           error_stack: action.error.stack,
         });
-        state.status = 'failed';
+        state.status = "failed";
       });
   },
 });
@@ -76,12 +76,15 @@ export const { add, modify, deleteOne } = groupsSlice.actions;
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 
-export const fetchGroups = createAsyncThunk('groups/fetchGroups', async () => {
-  const response = await fetch('http://localhost:8080/api/groups/');
-  const data = await response.json();
-  console.log('#### fetchGroups ', data);
-  return data;
-});
+export const fetchAllGroups = createAsyncThunk(
+  "groups/fetchGroups",
+  async () => {
+    const response = await fetch("http://localhost:8080/api/groups/");
+    const data = await response.json();
+    console.log("#### fetchGroups ", data);
+    return data;
+  }
+);
 
 /* -------------------//     The function below is called a selector and allows us to select a value from
 //      SELECTORS    //     the state. Selectors can also be defined inline where they're used instead of
