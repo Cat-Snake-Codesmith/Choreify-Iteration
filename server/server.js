@@ -28,13 +28,13 @@ app.use('/build', express.static(path.join(__dirname, '../client/build')));
 app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../client/index.html')));
 
 // will send any users request to our users router
-app.use('api/users', usersRouter);
+app.use('/api/users', usersRouter);
 
 // will send any groups request to our users groupsRouter
-app.use('api/groups', groupsRouter);
+app.use('/api/groups', groupsRouter);
 
 // will send any chores request to our users choresRouter
-app.use('api/chores', choresRouter);
+app.use('/api/chores', choresRouter);
 
 // 404 error handler
 app.use('/*', (req, res) => {
